@@ -58,12 +58,14 @@ public class ElytraListener implements Listener {
 					
 					@Override
 					public void run() {
+						System.out.println(start.get(uuid));
 						if ((System.currentTimeMillis() - start.get(uuid).getA()) > 1000) {
-							PacketUtil.sendFakeExpChange(p, 1, 1000, 1);
+							PacketUtil.sendFakeExpChange(p, 1, 100, 100);
+							this.cancel();
 						}
 					}
 					
-				}.runTaskLater(ElytraPlugin.instance(), 22L);
+				}.runTaskTimer(ElytraPlugin.instance(), 0L, 1L);
 			}else {
 				if (!start.containsKey(uuid)) {
 					return;
